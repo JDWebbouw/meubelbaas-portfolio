@@ -14,11 +14,11 @@ export default function SectionWrapper({ id, children, className = '' }) {
     const ctx = gsap.context(() => {
       gsap.fromTo(
         el,
-        { opacity: 0, y: 52 },
+        { opacity: 0, y: 20 },
         {
           opacity: 1,
           y: 0,
-          duration: 0.95,
+          duration: 0.5,
           ease: 'power2.out',
           scrollTrigger: {
             trigger: el,

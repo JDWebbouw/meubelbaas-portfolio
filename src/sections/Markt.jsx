@@ -131,11 +131,11 @@ export default function Markt() {
 
       {/* Conclusie marktanalyse */}
       <div
-        className="mt-6 rounded-2xl p-6"
-        style={{ background: 'linear-gradient(135deg, #F5EDE0, #EDD9C0)' }}
+        className="mt-6 rounded-lg p-6"
+        style={{ background: '#F7F5F2', borderLeft: '3px solid #1A1A1A' }}
       >
-        <h4 className="font-bold text-stone-800 mb-2">Conclusie marktpositie</h4>
-        <p className="text-stone-600 text-sm leading-relaxed">
+        <h4 className="font-semibold mb-2" style={{ color: '#1A1A1A' }}>Conclusie marktpositie</h4>
+        <p className="text-sm leading-relaxed" style={{ color: '#6B6B6B' }}>
           MeubelBaas heeft een sterke marktpositie dankzij de combinatie van online webshop en fysieke
           winkellocaties. De hoge conversieratio (20,8%) is een significante sterktes ten opzichte van
           de concurrentie. Verbeterpotentieel ligt met name in duurzaamheidscommunicatie en digitale

@@ -16,84 +16,28 @@ const maandData = [
 ]
 
 const verkeerData = [
-  { name: 'Google Ads', value: 65, color: '#4285F4' },
-  { name: 'Organisch', value: 20, color: '#8B5E3C' },
-  { name: 'Direct', value: 10, color: '#D4A97A' },
-  { name: 'Social', value: 5, color: '#10B981' },
+  { name: 'Google Ads', value: 65, color: '#4B5563' },
+  { name: 'Organisch', value: 20, color: '#9CA3AF' },
+  { name: 'Direct', value: 10, color: '#D1D5DB' },
+  { name: 'Social', value: 5, color: '#E5E7EB' },
 ]
 
 const kpis = [
-  {
-    label: 'Maandomzet',
-    value: '€500.000',
-    sub: '+3,1% t.o.v. vorige maand',
-    trend: 'up',
-    icon: '💰',
-    color: '#10B981',
-  },
-  {
-    label: 'Bezoekers/maand',
-    value: '4.000',
-    sub: 'Stabiel t.o.v. vorige maand',
-    trend: 'neutral',
-    icon: '👥',
-    color: '#3B82F6',
-  },
-  {
-    label: 'Gem. orderwaarde',
-    value: '€600',
-    sub: 'Per bestelling',
-    trend: 'neutral',
-    icon: '🛒',
-    color: '#8B5E3C',
-  },
-  {
-    label: 'Bestellingen',
-    value: '±833',
-    sub: 'Per maand',
-    trend: 'up',
-    icon: '📦',
-    color: '#F59E0B',
-  },
-  {
-    label: 'Conversieratio',
-    value: '20,8%',
-    sub: 'Branchegemiddelde: 2-4%',
-    trend: 'up',
-    icon: '📈',
-    color: '#10B981',
-  },
-  {
-    label: 'Retourpercentage',
-    value: '6%',
-    sub: 'Grotendeels door transportschade',
-    trend: 'down',
-    icon: '↩️',
-    color: '#EF4444',
-  },
-  {
-    label: 'Bounce rate',
-    value: '38%',
-    sub: 'Landingspagina\'s optimaliseren',
-    trend: 'neutral',
-    icon: '🔄',
-    color: '#8B5CF6',
-  },
-  {
-    label: 'Gem. sessieduur',
-    value: '3:24 min',
-    sub: 'Positief teken van betrokkenheid',
-    trend: 'up',
-    icon: '⏱️',
-    color: '#D4A97A',
-  },
+  { label: 'Maandomzet', value: '€500.000', sub: '+3,1% t.o.v. vorige maand', trend: 'up' },
+  { label: 'Bezoekers/maand', value: '4.000', sub: 'Stabiel t.o.v. vorige maand', trend: 'neutral' },
+  { label: 'Gem. orderwaarde', value: '€600', sub: 'Per bestelling', trend: 'neutral' },
+  { label: 'Bestellingen', value: '±833', sub: 'Per maand', trend: 'up' },
+  { label: 'Conversieratio', value: '20,8%', sub: 'Branchegemiddelde: 2-4%', trend: 'up' },
+  { label: 'Retourpercentage', value: '6%', sub: 'Grotendeels door transportschade', trend: 'down' },
+  { label: 'Bounce rate', value: '38%', sub: 'Landingspagina\'s optimaliseren', trend: 'neutral' },
+  { label: 'Gem. sessieduur', value: '3:24 min', sub: 'Positief teken van betrokkenheid', trend: 'up' },
 ]
 
 const CustomTooltip = ({ active, payload, label }) => {
   if (active && payload && payload.length) {
     return (
-      <div className="bg-white border border-stone-100 rounded-xl shadow-lg p-3">
-        <p className="font-bold text-stone-800 text-sm mb-2">{label}</p>
+      <div className="bg-white rounded-lg shadow-lg p-3" style={{ border: '1px solid #E8E4DE' }}>
+        <p className="font-semibold text-sm mb-2" style={{ color: '#1A1A1A' }}>{label}</p>
         {payload.map((p, i) => (
           <p key={i} className="text-xs" style={{ color: p.color }}>
             {p.name}: {typeof p.value === 'number' && p.value > 1000
@@ -118,93 +62,94 @@ export default function KpiDashboard() {
       />
 
       {/* KPI Cards */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-10">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-10">
         {kpis.map((kpi, i) => (
           <div
             key={i}
-            className="bg-white rounded-2xl p-5 shadow-sm border border-stone-100 hover:shadow-md transition-all duration-300"
+            className="bg-white rounded-lg p-5"
+            style={{ border: '1px solid rgba(255,255,255,0.1)', boxShadow: '0 1px 3px rgba(0,0,0,0.06)' }}
           >
             <div className="flex items-start justify-between mb-3">
-              <span className="text-2xl">{kpi.icon}</span>
+              <div />
               <div>
-                {kpi.trend === 'up' && <TrendingUp size={16} className="text-green-500" />}
-                {kpi.trend === 'down' && <TrendingDown size={16} className="text-red-500" />}
-                {kpi.trend === 'neutral' && <Minus size={16} className="text-stone-400" />}
+                {kpi.trend === 'up' && <TrendingUp size={14} className="text-green-400" />}
+                {kpi.trend === 'down' && <TrendingDown size={14} className="text-red-400" />}
+                {kpi.trend === 'neutral' && <Minus size={14} style={{ color: '#6B7280' }} />}
               </div>
             </div>
-            <div className="text-2xl font-extrabold text-stone-900 mb-1">{kpi.value}</div>
-            <div className="text-xs font-semibold text-stone-500 uppercase tracking-wide mb-1">{kpi.label}</div>
-            <div className="text-xs text-stone-400">{kpi.sub}</div>
-            <div className="mt-3 h-1 rounded-full bg-stone-100">
-              <div className="h-full rounded-full w-3/4" style={{ background: kpi.color }} />
+            <div className="text-xl font-bold mb-1" style={{ color: '#1A1A1A', fontFamily: 'Playfair Display, serif' }}>
+              {kpi.value}
+            </div>
+            <div className="text-[10px] font-semibold uppercase tracking-wide mb-1" style={{ color: '#6B7280' }}>
+              {kpi.label}
+            </div>
+            <div className="text-xs" style={{ color: '#9CA3AF' }}>{kpi.sub}</div>
+            <div className="mt-3 h-px bg-white/10">
+              <div className="h-full w-3/4" style={{ background: 'rgba(255,255,255,0.3)' }} />
             </div>
           </div>
         ))}
       </div>
 
       {/* Charts */}
-      <div className="grid lg:grid-cols-2 gap-6">
-        {/* Omzet chart */}
-        <div className="bg-white rounded-2xl p-6 shadow-sm border border-stone-100">
-          <h3 className="font-bold text-stone-800 mb-1">Maandelijkse omzet</h3>
-          <p className="text-stone-400 text-xs mb-5">Januari – Juni (in euro's)</p>
+      <div className="grid lg:grid-cols-2 gap-5">
+        <div className="bg-white rounded-lg p-6" style={{ border: '1px solid #E8E4DE', boxShadow: '0 1px 3px rgba(0,0,0,0.06)' }}>
+          <h3 className="font-semibold mb-1" style={{ color: '#1A1A1A' }}>Maandelijkse omzet</h3>
+          <p className="text-xs mb-5" style={{ color: '#9CA3AF' }}>Januari – Juni (in euro's)</p>
           <ResponsiveContainer width="100%" height={220}>
             <AreaChart data={maandData} margin={{ top: 5, right: 5, left: 0, bottom: 0 }}>
               <defs>
                 <linearGradient id="omzetGrad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#8B5E3C" stopOpacity={0.3} />
-                  <stop offset="95%" stopColor="#8B5E3C" stopOpacity={0} />
+                  <stop offset="5%" stopColor="#1A1A1A" stopOpacity={0.12} />
+                  <stop offset="95%" stopColor="#1A1A1A" stopOpacity={0} />
                 </linearGradient>
               </defs>
-              <CartesianGrid strokeDasharray="3 3" stroke="#F5F5F5" />
+              <CartesianGrid strokeDasharray="3 3" stroke="#F3F4F6" />
               <XAxis dataKey="maand" tick={{ fontSize: 12, fill: '#9CA3AF' }} axisLine={false} tickLine={false} />
               <YAxis tick={{ fontSize: 11, fill: '#9CA3AF' }} axisLine={false} tickLine={false}
                 tickFormatter={v => `€${(v/1000).toFixed(0)}k`} />
               <Tooltip content={<CustomTooltip />} />
-              <Area type="monotone" dataKey="omzet" name="Omzet" stroke="#8B5E3C" strokeWidth={2.5}
-                fill="url(#omzetGrad)" dot={{ fill: '#8B5E3C', r: 4 }} activeDot={{ r: 6 }} />
+              <Area type="monotone" dataKey="omzet" name="Omzet" stroke="#1A1A1A" strokeWidth={2}
+                fill="url(#omzetGrad)" dot={{ fill: '#1A1A1A', r: 3 }} activeDot={{ r: 5 }} />
             </AreaChart>
           </ResponsiveContainer>
         </div>
 
-        {/* Bezoekers / bestellingen */}
-        <div className="bg-white rounded-2xl p-6 shadow-sm border border-stone-100">
-          <h3 className="font-bold text-stone-800 mb-1">Bezoekers & Bestellingen</h3>
-          <p className="text-stone-400 text-xs mb-5">Januari – Juni</p>
+        <div className="bg-white rounded-lg p-6" style={{ border: '1px solid #E8E4DE', boxShadow: '0 1px 3px rgba(0,0,0,0.06)' }}>
+          <h3 className="font-semibold mb-1" style={{ color: '#1A1A1A' }}>Bezoekers & Bestellingen</h3>
+          <p className="text-xs mb-5" style={{ color: '#9CA3AF' }}>Januari – Juni</p>
           <ResponsiveContainer width="100%" height={220}>
             <BarChart data={maandData} margin={{ top: 5, right: 5, left: 0, bottom: 0 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#F5F5F5" />
+              <CartesianGrid strokeDasharray="3 3" stroke="#F3F4F6" />
               <XAxis dataKey="maand" tick={{ fontSize: 12, fill: '#9CA3AF' }} axisLine={false} tickLine={false} />
               <YAxis tick={{ fontSize: 11, fill: '#9CA3AF' }} axisLine={false} tickLine={false} />
               <Tooltip content={<CustomTooltip />} />
-              <Bar dataKey="bezoekers" name="Bezoekers" fill="#D4A97A" radius={[4,4,0,0]} />
-              <Bar dataKey="bestellingen" name="Bestellingen" fill="#8B5E3C" radius={[4,4,0,0]} />
-              <Legend formatter={(v) => <span className="text-xs text-stone-600">{v}</span>} />
+              <Bar dataKey="bezoekers" name="Bezoekers" fill="#D1D5DB" radius={[3,3,0,0]} />
+              <Bar dataKey="bestellingen" name="Bestellingen" fill="#1A1A1A" radius={[3,3,0,0]} />
+              <Legend formatter={(v) => <span className="text-xs" style={{ color: '#6B7280' }}>{v}</span>} />
             </BarChart>
           </ResponsiveContainer>
         </div>
 
-        {/* Traffic pie */}
-        <div className="bg-white rounded-2xl p-6 shadow-sm border border-stone-100">
-          <h3 className="font-bold text-stone-800 mb-1">Verkeersbronnen</h3>
-          <p className="text-stone-400 text-xs mb-5">Verdeling per kanaal (%)</p>
+        <div className="bg-white rounded-lg p-6" style={{ border: '1px solid #E8E4DE', boxShadow: '0 1px 3px rgba(0,0,0,0.06)' }}>
+          <h3 className="font-semibold mb-1" style={{ color: '#1A1A1A' }}>Verkeersbronnen</h3>
+          <p className="text-xs mb-5" style={{ color: '#9CA3AF' }}>Verdeling per kanaal (%)</p>
           <ResponsiveContainer width="100%" height={220}>
             <PieChart>
               <Pie data={verkeerData} cx="50%" cy="50%" innerRadius={55} outerRadius={85}
-                dataKey="value" nameKey="name" paddingAngle={3}>
+                dataKey="value" nameKey="name" paddingAngle={2}>
                 {verkeerData.map((entry, i) => (
                   <Cell key={i} fill={entry.color} />
                 ))}
               </Pie>
               <Tooltip formatter={(v) => `${v}%`} />
-              <Legend formatter={(v) => <span className="text-xs text-stone-600">{v}</span>} />
+              <Legend formatter={(v) => <span className="text-xs" style={{ color: '#6B7280' }}>{v}</span>} />
             </PieChart>
           </ResponsiveContainer>
         </div>
 
-        {/* Benchmark */}
-        <div className="bg-white rounded-2xl p-6 shadow-sm border border-stone-100">
-          <h3 className="font-bold text-stone-800 mb-4">Benchmark vs. branche</h3>
+        <div className="bg-white rounded-lg p-6" style={{ border: '1px solid #E8E4DE', boxShadow: '0 1px 3px rgba(0,0,0,0.06)' }}>
+          <h3 className="font-semibold mb-4" style={{ color: '#1A1A1A' }}>Benchmark vs. branche</h3>
           <div className="space-y-4">
             {[
               { label: 'Conversieratio', mb: '20,8%', branch: '2-4%', good: true },
@@ -213,21 +158,19 @@ export default function KpiDashboard() {
               { label: 'Gem. orderwaarde', mb: '€600', branch: '€300-400', good: true },
             ].map((row, i) => (
               <div key={i} className="flex items-center justify-between">
-                <span className="text-sm text-stone-600 w-36">{row.label}</span>
+                <span className="text-sm w-36" style={{ color: '#6B6B6B' }}>{row.label}</span>
                 <div className="flex items-center gap-3">
-                  <span className={`text-sm font-bold ${row.good ? 'text-green-600' : 'text-red-500'}`}>
-                    {row.mb}
-                  </span>
-                  <span className="text-xs text-stone-400">vs.</span>
-                  <span className="text-sm text-stone-400">{row.branch}</span>
-                  <span className="text-green-500 text-sm">✓</span>
+                  <span className="text-sm font-semibold" style={{ color: '#1A1A1A' }}>{row.mb}</span>
+                  <span className="text-xs" style={{ color: '#9CA3AF' }}>vs.</span>
+                  <span className="text-sm" style={{ color: '#9CA3AF' }}>{row.branch}</span>
+                  <span className="text-xs font-medium" style={{ color: '#10B981' }}>✓</span>
                 </div>
               </div>
             ))}
           </div>
           <div
-            className="mt-4 p-3 rounded-xl text-xs"
-            style={{ background: '#ECFDF5', color: '#065F46' }}
+            className="mt-4 p-3 rounded text-xs"
+            style={{ background: '#F7F5F2', color: '#6B6B6B', borderLeft: '3px solid #1A1A1A' }}
           >
             MeubelBaas scoort op alle benchmarkpunten boven het branchegemiddelde.
           </div>

@@ -7,7 +7,6 @@ const phases = [
     phase: 'See',
     color: '#3B82F6',
     bg: '#EFF6FF',
-    icon: '👁️',
     desc: 'Bewustwording – de klant ontdekt MeubelBaas voor het eerst.',
     touchpoints: ['Google Ads campagnes', 'Social media (Instagram, Facebook)', 'Mond-tot-mondreclame', 'Organische zoekresultaten'],
     knelpunten: ['Beperkte organische vindbaarheid', 'Weinig merkbekendheid buiten Apeldoorn'],
@@ -17,7 +16,6 @@ const phases = [
     phase: 'Think',
     color: '#8B5CF6',
     bg: '#F5F3FF',
-    icon: '🤔',
     desc: 'Overweging – de klant vergelijkt producten en beoordeelt de webshop.',
     touchpoints: ['Productpagina\'s bekijken', 'Reviews lezen', 'Prijzen vergelijken', 'Webshop navigeren'],
     knelpunten: ['Weinig reviews zichtbaar', 'Productbeschrijvingen soms beperkt', 'Gebrek aan A/B-testing'],
@@ -27,7 +25,6 @@ const phases = [
     phase: 'Do',
     color: '#10B981',
     bg: '#ECFDF5',
-    icon: '🛒',
     desc: 'Aankoop – de klant plaatst een bestelling via de webshop.',
     touchpoints: ['Winkelwagen aanmaken', 'Checkout doorlopen', 'Betaling afronden', 'Bevestigingsmail ontvangen'],
     knelpunten: ['Retourpercentage 6% door transportschade', 'Checkout optimalisatie gewenst'],
@@ -37,7 +34,6 @@ const phases = [
     phase: 'Care',
     color: '#F59E0B',
     bg: '#FFFBEB',
-    icon: '❤️',
     desc: 'Loyaliteit – de klant wordt behouden voor herhaalaankopen.',
     touchpoints: ['E-mailmarketing', 'Klantenservice', 'Retourproces', 'Loyaliteitsprogramma'],
     knelpunten: ['E-mailmarketing nog niet volledig benut', 'Geen retargeting ingezet'],
@@ -54,41 +50,32 @@ export default function CustomerJourney() {
         subtitle="Analyse van de klantreis bij MeubelBaas in vier fases, inclusief knelpunten en verbeterpunten per fase."
       />
 
-      <div className="space-y-6">
+      <div className="space-y-4">
         {phases.map((p, i) => (
           <div
             key={i}
-            className="bg-white rounded-2xl shadow-sm border border-stone-100 overflow-hidden hover:shadow-md transition-all duration-300"
+            className="bg-white rounded-lg overflow-hidden"
+            style={{ border: '1px solid #E8E4DE', boxShadow: '0 1px 3px rgba(0,0,0,0.06)' }}
           >
             <div className="flex items-start gap-0">
-              {/* Phase indicator */}
-              <div
-                className="w-2 flex-shrink-0 self-stretch"
-                style={{ background: p.color }}
-              />
+              <div className="w-1 flex-shrink-0 self-stretch" style={{ background: p.color }} />
               <div className="flex-1 p-6">
-                <div className="flex flex-wrap items-start gap-4 mb-4">
-                  <div
-                    className="flex items-center gap-3 px-4 py-2 rounded-xl"
-                    style={{ background: p.bg }}
-                  >
-                    <span className="text-2xl">{p.icon}</span>
-                    <div>
-                      <div className="font-bold text-lg" style={{ color: p.color }}>{p.phase}</div>
-                      <div className="text-xs text-stone-500">{p.desc}</div>
-                    </div>
+                <div className="flex flex-wrap items-center gap-3 mb-4">
+                  <div className="flex items-center gap-2 px-3 py-1.5 rounded-md" style={{ background: p.bg }}>
+                    <div className="font-semibold text-base" style={{ color: p.color }}>{p.phase}</div>
                   </div>
+                  <p className="text-sm" style={{ color: '#6B6B6B' }}>{p.desc}</p>
                 </div>
 
                 <div className="grid sm:grid-cols-3 gap-4">
                   <div>
-                    <h4 className="text-xs font-bold uppercase tracking-wide text-stone-400 mb-2 flex items-center gap-1">
-                      <ArrowRight size={12} /> Touchpoints
+                    <h4 className="text-[10px] font-semibold uppercase tracking-[0.12em] mb-2 flex items-center gap-1" style={{ color: '#9CA3AF' }}>
+                      <ArrowRight size={10} /> Touchpoints
                     </h4>
                     <ul className="space-y-1">
                       {p.touchpoints.map((t, j) => (
-                        <li key={j} className="text-sm text-stone-600 flex items-start gap-2">
-                          <span className="mt-1 w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: p.color }} />
+                        <li key={j} className="text-sm flex items-start gap-2" style={{ color: '#6B6B6B' }}>
+                          <span className="mt-1.5 w-1 h-1 rounded-full flex-shrink-0" style={{ background: p.color }} />
                           {t}
                         </li>
                       ))}
@@ -96,13 +83,13 @@ export default function CustomerJourney() {
                   </div>
 
                   <div>
-                    <h4 className="text-xs font-bold uppercase tracking-wide text-stone-400 mb-2 flex items-center gap-1">
-                      <AlertCircle size={12} /> Knelpunten
+                    <h4 className="text-[10px] font-semibold uppercase tracking-[0.12em] mb-2 flex items-center gap-1" style={{ color: '#9CA3AF' }}>
+                      <AlertCircle size={10} /> Knelpunten
                     </h4>
                     <ul className="space-y-1">
                       {p.knelpunten.map((k, j) => (
-                        <li key={j} className="text-sm text-red-600 flex items-start gap-2">
-                          <span className="mt-1 w-1.5 h-1.5 rounded-full flex-shrink-0 bg-red-400" />
+                        <li key={j} className="text-sm flex items-start gap-2 text-red-600">
+                          <span className="mt-1.5 w-1 h-1 rounded-full flex-shrink-0 bg-red-400" />
                           {k}
                         </li>
                       ))}
@@ -110,13 +97,13 @@ export default function CustomerJourney() {
                   </div>
 
                   <div>
-                    <h4 className="text-xs font-bold uppercase tracking-wide text-stone-400 mb-2 flex items-center gap-1">
-                      <CheckCircle size={12} /> Verbeterpunten
+                    <h4 className="text-[10px] font-semibold uppercase tracking-[0.12em] mb-2 flex items-center gap-1" style={{ color: '#9CA3AF' }}>
+                      <CheckCircle size={10} /> Verbeterpunten
                     </h4>
                     <ul className="space-y-1">
                       {p.verbeterpunten.map((v, j) => (
-                        <li key={j} className="text-sm text-green-700 flex items-start gap-2">
-                          <span className="mt-1 w-1.5 h-1.5 rounded-full flex-shrink-0 bg-green-500" />
+                        <li key={j} className="text-sm flex items-start gap-2 text-green-700">
+                          <span className="mt-1.5 w-1 h-1 rounded-full flex-shrink-0 bg-green-500" />
                           {v}
                         </li>
                       ))}
@@ -129,26 +116,27 @@ export default function CustomerJourney() {
         ))}
       </div>
 
-      {/* Journey flow diagram */}
-      <div className="mt-8 bg-white rounded-2xl p-6 border border-stone-100 shadow-sm">
-        <h3 className="font-bold text-stone-800 mb-4">Klantreis visualisatie</h3>
-        <div className="flex flex-wrap items-center gap-3 justify-center sm:justify-start">
+      <div
+        className="mt-6 bg-white rounded-lg p-6"
+        style={{ border: '1px solid #E8E4DE', boxShadow: '0 1px 3px rgba(0,0,0,0.06)' }}
+      >
+        <h3 className="font-semibold mb-4" style={{ color: '#1A1A1A' }}>Klantreis visualisatie</h3>
+        <div className="flex flex-wrap items-center gap-3">
           {phases.map((p, i) => (
             <div key={i} className="flex items-center gap-3">
               <div
-                className="flex items-center gap-2 px-5 py-3 rounded-xl font-semibold text-white shadow-sm"
+                className="flex items-center gap-2 px-5 py-2.5 rounded font-semibold text-white text-sm"
                 style={{ background: p.color }}
               >
-                <span>{p.icon}</span>
-                <span>{p.phase}</span>
+                {p.phase}
               </div>
               {i < phases.length - 1 && (
-                <ArrowRight size={20} className="text-stone-300 flex-shrink-0" />
+                <ArrowRight size={16} style={{ color: '#D1D5DB', flexShrink: 0 }} />
               )}
             </div>
           ))}
         </div>
-        <p className="text-stone-500 text-sm mt-4">
+        <p className="text-sm mt-4" style={{ color: '#6B6B6B' }}>
           De customer journey bij MeubelBaas begint bij bewustwording via Google Ads en eindigt idealiter
           bij herhaalaankopen door loyale klanten. Het verbeteren van iedere fase leidt tot hogere conversie en klanttevredenheid.
         </p>

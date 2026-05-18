@@ -12,28 +12,26 @@ export default function Home() {
   useEffect(() => {
     const el = heroRef.current
     if (!el) return
-
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ defaults: { ease: 'power2.out' } })
-      tl.fromTo('.hero-eyebrow', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.7 }, 0.3)
-        .fromTo('.hero-title', { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.9 }, 0.5)
-        .fromTo('.hero-sub', { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.7 }, 0.75)
-        .fromTo('.hero-body', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.7 }, 0.9)
-        .fromTo('.hero-cta', { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.6 }, 1.05)
-        .fromTo('.hero-card', { opacity: 0, y: 28, scale: 0.96 }, { opacity: 1, y: 0, scale: 1, duration: 0.6, stagger: 0.07 }, 0.6)
-        .fromTo('.hero-scroll', { opacity: 0 }, { opacity: 1, duration: 0.5 }, 1.4)
+      tl.fromTo('.hero-eyebrow', { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.5 }, 0.3)
+        .fromTo('.hero-title', { opacity: 0, y: 28 }, { opacity: 1, y: 0, duration: 0.6 }, 0.45)
+        .fromTo('.hero-sub', { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.5 }, 0.6)
+        .fromTo('.hero-body', { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.5 }, 0.72)
+        .fromTo('.hero-cta', { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.45 }, 0.84)
+        .fromTo('.hero-card', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.45, stagger: 0.055 }, 0.5)
+        .fromTo('.hero-scroll', { opacity: 0 }, { opacity: 1, duration: 0.4 }, 1.2)
     }, el)
-
     return () => ctx.revert()
   }, [])
 
   const infoCards = [
-    { label: 'Bedrijf', value: 'MeubelBaas', icon: '🪵' },
-    { label: 'Platform', value: 'Shopify', icon: '🛒' },
-    { label: 'Verkoopregio', value: 'NL & BE', icon: '🇳🇱' },
-    { label: 'Businessmodel', value: 'B2C', icon: '🤝' },
-    { label: 'Maandomzet', value: '€500.000', icon: '💰' },
-    { label: 'Conversieratio', value: '20,8%', icon: '📈' },
+    { label: 'Bedrijf', value: 'MeubelBaas' },
+    { label: 'Platform', value: 'Shopify' },
+    { label: 'Verkoopregio', value: 'NL & BE' },
+    { label: 'Businessmodel', value: 'B2C' },
+    { label: 'Maandomzet', value: '€500.000' },
+    { label: 'Conversieratio', value: '20,8%' },
   ]
 
   return (
@@ -41,159 +39,111 @@ export default function Home() {
       id="home"
       ref={heroRef}
       className="min-h-[100dvh] flex flex-col justify-center relative overflow-hidden"
+      style={{ background: '#F7F5F2' }}
     >
-      {/* Background gradient */}
-      <div
-        className="absolute inset-0 -z-10"
-        style={{ background: 'linear-gradient(160deg, #FDFAF6 0%, #F8EFE3 55%, #EDD9C0 100%)' }}
-      />
-
-      {/* Ambient orbs */}
-      <div
-        className="absolute -z-10"
-        style={{
-          top: '8%', right: '5%',
-          width: '560px', height: '560px',
-          borderRadius: '50%',
-          background: 'radial-gradient(circle, #D4A97A 0%, transparent 70%)',
-          filter: 'blur(72px)',
-          opacity: 0.22,
-        }}
-      />
-      <div
-        className="absolute -z-10"
-        style={{
-          bottom: '5%', left: '3%',
-          width: '420px', height: '420px',
-          borderRadius: '50%',
-          background: 'radial-gradient(circle, #8B5E3C 0%, transparent 70%)',
-          filter: 'blur(90px)',
-          opacity: 0.13,
-        }}
-      />
-
-      {/* Subtle wood grain lines */}
-      <div className="absolute inset-0 -z-10 overflow-hidden" style={{ opacity: 0.035 }}>
-        {[...Array(6)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute"
-            style={{
-              left: '-25%', width: '150%', height: '1px',
-              background: '#8B5E3C',
-              top: `${15 + i * 15}%`,
-              transform: `rotate(${i % 2 === 0 ? 1.5 : -1}deg)`,
-            }}
-          />
-        ))}
-      </div>
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 w-full pt-28 pb-16">
-        <div className="grid lg:grid-cols-[1fr_360px] gap-12 lg:gap-20 items-center">
+        <div className="grid lg:grid-cols-[1fr_320px] gap-12 lg:gap-20 items-center">
 
           {/* Left — content */}
           <div>
-            {/* Eyebrow tag */}
-            <div
-              className="hero-eyebrow inline-flex items-center gap-2.5 text-[11px] font-bold uppercase tracking-[0.22em] px-4 py-2 rounded-full mb-8"
-              style={{ background: 'rgba(139,94,60,0.10)', color: '#8B5E3C', opacity: 0 }}
-            >
-              <span
-                className="w-1.5 h-1.5 rounded-full"
-                style={{ background: '#8B5E3C', animation: 'pulse 2s infinite' }}
-              />
-              Module 6 – E-commerce Analyse
-            </div>
-
-            {/* Main heading */}
-            <h1
-              className="hero-title font-extrabold leading-[0.93] tracking-tight mb-6"
+            <p
+              className="hero-eyebrow mb-7"
               style={{
-                fontSize: 'clamp(3.5rem, 8vw, 6.5rem)',
-                color: '#2D1F0E',
-                fontFamily: 'Syne, sans-serif',
+                fontSize: '11px',
+                letterSpacing: '0.12em',
+                color: '#6B6B6B',
+                textTransform: 'uppercase',
+                fontFamily: 'Inter, sans-serif',
+                fontWeight: 500,
                 opacity: 0,
               }}
             >
-              Jayden
-              <span className="block" style={{ color: '#8B5E3C' }}>Bouwman</span>
+              Module 6 — E-commerce Analyse
+            </p>
+
+            <h1
+              className="hero-title font-bold leading-[0.96] mb-6"
+              style={{
+                fontSize: 'clamp(3.2rem, 7.5vw, 6rem)',
+                color: '#1A1A1A',
+                fontFamily: 'Playfair Display, serif',
+                letterSpacing: '-0.02em',
+                opacity: 0,
+              }}
+            >
+              Jayden<br />
+              <span style={{ fontStyle: 'italic' }}>Bouwman</span>
             </h1>
 
-            {/* Subtitle row */}
-            <div
-              className="hero-sub flex items-center gap-3 mb-6"
-              style={{ opacity: 0 }}
-            >
-              <span className="w-8 h-px flex-shrink-0" style={{ background: '#8B5E3C' }} />
-              <p
-                className="text-sm font-bold uppercase tracking-[0.18em]"
-                style={{ color: '#6B4226' }}
-              >
+            <div className="hero-sub flex items-center gap-3 mb-6" style={{ opacity: 0 }}>
+              <span className="w-8 h-px flex-shrink-0" style={{ background: '#1A1A1A' }} />
+              <p className="text-xs font-semibold uppercase tracking-[0.18em]" style={{ color: '#6B6B6B' }}>
                 E-commerce Specialist
               </p>
             </div>
 
-            {/* Body copy */}
             <p
-              className="hero-body text-stone-600 leading-relaxed mb-10 max-w-[520px]"
-              style={{ fontSize: 'clamp(1rem, 1.5vw, 1.125rem)', opacity: 0 }}
+              className="hero-body leading-relaxed mb-10 max-w-[500px]"
+              style={{ fontSize: 'clamp(0.95rem, 1.4vw, 1.05rem)', color: '#6B6B6B', opacity: 0 }}
             >
               In dit portfolio presenteer ik een uitgebreide e-commerce analyse van{' '}
-              <strong style={{ color: '#8B5E3C' }}>MeubelBaas</strong> – een Nederlandse meubelwebshop
-              gespecialiseerd in mangohouten meubels. Alle analyses, conclusies en verbeteradviezen
-              worden hieronder gepresenteerd.
+              <strong style={{ color: '#1A1A1A', fontWeight: 600 }}>MeubelBaas</strong> – een Nederlandse
+              meubelwebshop gespecialiseerd in mangohouten meubels. Alle analyses, conclusies en
+              verbeteradviezen worden hieronder gepresenteerd.
             </p>
 
-            {/* CTAs — button-in-button pattern */}
             <div className="hero-cta flex flex-wrap gap-3" style={{ opacity: 0 }}>
-              {/* Primary */}
+              {/* Primary CTA */}
               <button
                 onClick={() => scrollTo('kpi')}
-                className="group flex items-center gap-0 pl-5 pr-1.5 py-1.5 rounded-full font-semibold text-white text-sm"
+                className="group flex items-center gap-0 pl-5 pr-1.5 py-1.5 rounded-full font-medium text-white text-sm"
                 style={{
-                  background: 'linear-gradient(135deg, #8B5E3C, #6B4226)',
-                  transition: 'all 0.5s cubic-bezier(0.32,0.72,0,1)',
-                  boxShadow: '0 4px 16px rgba(139,94,60,0.25)',
+                  background: '#1A1A1A',
+                  transition: 'all 0.4s cubic-bezier(0.32,0.72,0,1)',
+                  boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
                 }}
                 onMouseEnter={e => {
-                  e.currentTarget.style.transform = 'translateY(-2px)'
-                  e.currentTarget.style.boxShadow = '0 10px 28px rgba(139,94,60,0.4)'
+                  e.currentTarget.style.transform = 'translateY(-1px)'
+                  e.currentTarget.style.boxShadow = '0 6px 20px rgba(0,0,0,0.2)'
                 }}
                 onMouseLeave={e => {
                   e.currentTarget.style.transform = 'translateY(0)'
-                  e.currentTarget.style.boxShadow = '0 4px 16px rgba(139,94,60,0.25)'
+                  e.currentTarget.style.boxShadow = '0 2px 8px rgba(0,0,0,0.15)'
                 }}
               >
                 Bekijk KPI Dashboard
                 <span
-                  className="ml-3 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-400"
-                  style={{
-                    background: 'rgba(255,255,255,0.18)',
-                    transition: 'all 0.4s cubic-bezier(0.32,0.72,0,1)',
-                  }}
+                  className="ml-3 w-8 h-8 rounded-full flex items-center justify-center"
+                  style={{ background: 'rgba(255,255,255,0.15)' }}
                 >
                   <ArrowDown size={14} />
                 </span>
               </button>
 
-              {/* Secondary */}
+              {/* Secondary CTA */}
               <a
                 href="https://www.meubelbaas.nl"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-center gap-0 pl-5 pr-1.5 py-1.5 rounded-full font-semibold text-sm border-2"
+                className="flex items-center gap-0 pl-5 pr-1.5 py-1.5 rounded-full font-medium text-sm border"
                 style={{
-                  borderColor: '#8B5E3C',
-                  color: '#8B5E3C',
-                  transition: 'all 0.5s cubic-bezier(0.32,0.72,0,1)',
+                  borderColor: '#E8E4DE',
+                  color: '#1A1A1A',
+                  transition: 'all 0.4s cubic-bezier(0.32,0.72,0,1)',
                 }}
-                onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)' }}
-                onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)' }}
+                onMouseEnter={e => {
+                  e.currentTarget.style.transform = 'translateY(-1px)'
+                  e.currentTarget.style.borderColor = '#1A1A1A'
+                }}
+                onMouseLeave={e => {
+                  e.currentTarget.style.transform = 'translateY(0)'
+                  e.currentTarget.style.borderColor = '#E8E4DE'
+                }}
               >
                 MeubelBaas.nl
                 <span
                   className="ml-3 w-8 h-8 rounded-full flex items-center justify-center"
-                  style={{ background: 'rgba(139,94,60,0.09)', transition: 'all 0.4s cubic-bezier(0.32,0.72,0,1)' }}
+                  style={{ background: 'rgba(0,0,0,0.05)' }}
                 >
                   <ExternalLink size={13} />
                 </span>
@@ -201,40 +151,34 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Right — double-bezel info cards */}
-          <div className="grid grid-cols-2 gap-3">
+          {/* Right — info cards */}
+          <div className="grid grid-cols-2 gap-2.5">
             {infoCards.map((card, i) => (
               <div
                 key={i}
-                className="hero-card rounded-[1.25rem] p-[3px]"
+                className="hero-card bg-white rounded-lg p-5"
                 style={{
-                  background: 'rgba(139,94,60,0.07)',
-                  border: '1px solid rgba(139,94,60,0.11)',
+                  border: '1px solid #E8E4DE',
+                  boxShadow: '0 1px 3px rgba(0,0,0,0.06)',
                   opacity: 0,
-                  transition: 'all 0.35s cubic-bezier(0.32,0.72,0,1)',
+                  transition: 'all 0.3s cubic-bezier(0.32,0.72,0,1)',
                 }}
                 onMouseEnter={e => {
-                  e.currentTarget.style.transform = 'translateY(-3px)'
-                  e.currentTarget.style.boxShadow = '0 12px 32px rgba(139,94,60,0.12)'
+                  e.currentTarget.style.transform = 'translateY(-2px)'
+                  e.currentTarget.style.boxShadow = '0 4px 16px rgba(0,0,0,0.08)'
                 }}
                 onMouseLeave={e => {
                   e.currentTarget.style.transform = 'translateY(0)'
-                  e.currentTarget.style.boxShadow = 'none'
+                  e.currentTarget.style.boxShadow = '0 1px 3px rgba(0,0,0,0.06)'
                 }}
               >
                 <div
-                  className="bg-white rounded-[calc(1.25rem-3px)] p-5 h-full"
-                  style={{ boxShadow: 'inset 0 1px 1px rgba(255,255,255,0.8)' }}
+                  className="text-[10px] font-semibold uppercase tracking-[0.15em] mb-2"
+                  style={{ color: '#9CA3AF' }}
                 >
-                  <div className="text-2xl mb-3">{card.icon}</div>
-                  <div
-                    className="text-[10px] font-bold uppercase tracking-[0.15em] mb-1"
-                    style={{ color: '#a8a29e' }}
-                  >
-                    {card.label}
-                  </div>
-                  <div className="font-bold text-stone-800 text-sm">{card.value}</div>
+                  {card.label}
                 </div>
+                <div className="font-semibold text-sm" style={{ color: '#1A1A1A' }}>{card.value}</div>
               </div>
             ))}
           </div>
@@ -245,21 +189,14 @@ export default function Home() {
           <button
             onClick={() => scrollTo('over')}
             className="flex flex-col items-center gap-3 transition-all duration-300 group"
-            style={{ color: '#b0967c' }}
-            onMouseEnter={e => { e.currentTarget.style.opacity = '0.7' }}
-            onMouseLeave={e => { e.currentTarget.style.opacity = '1' }}
+            style={{ color: '#9CA3AF' }}
           >
-            <span className="text-[10px] font-bold tracking-[0.28em] uppercase opacity-60">
-              Scroll naar beneden
-            </span>
+            <span className="text-[10px] font-medium tracking-[0.25em] uppercase">Scroll naar beneden</span>
             <div
-              className="w-7 h-11 rounded-full flex items-start justify-center p-2 opacity-60 group-hover:opacity-100 transition-opacity"
-              style={{ border: '1px solid currentColor' }}
+              className="w-7 h-11 rounded-full flex items-start justify-center p-2 transition-opacity group-hover:opacity-70"
+              style={{ border: '1px solid #E8E4DE' }}
             >
-              <div
-                className="w-1 h-2.5 rounded-full"
-                style={{ background: '#8B5E3C', animation: 'bounce 1.5s infinite' }}
-              />
+              <div className="w-1 h-2.5 rounded-full" style={{ background: '#9CA3AF', animation: 'bounce 1.5s infinite' }} />
             </div>
           </button>
         </div>

@@ -17,18 +17,17 @@ import Bronnen from './sections/Bronnen'
 
 function App() {
   return (
-    <div className="min-h-screen" style={{ background: '#FDFAF6' }}>
+    <div className="min-h-screen" style={{ background: '#F7F5F2' }}>
       <Navbar />
 
       <main>
         <Home />
 
-        {/* Alternating section backgrounds */}
         <div style={{ background: '#FFFFFF' }}>
           <Over />
         </div>
 
-        <div style={{ background: '#FDFAF6' }}>
+        <div style={{ background: '#F7F5F2' }}>
           <CustomerJourney />
         </div>
 
@@ -36,14 +35,11 @@ function App() {
           <Markt />
         </div>
 
-        {/* KPI Dashboard with special background */}
-        <div style={{ background: 'linear-gradient(180deg, #1A1208 0%, #2D1F0E 100%)' }}>
-          <div className="py-2">
-            <KpiDashboard />
-          </div>
+        <div style={{ background: '#1A1A1A' }}>
+          <KpiDashboard />
         </div>
 
-        <div style={{ background: '#FDFAF6' }}>
+        <div style={{ background: '#F7F5F2' }}>
           <Verkoop />
         </div>
 
@@ -51,7 +47,7 @@ function App() {
           <Systemen />
         </div>
 
-        <div style={{ background: '#FDFAF6' }}>
+        <div style={{ background: '#F7F5F2' }}>
           <Financieel />
         </div>
 
@@ -59,7 +55,7 @@ function App() {
           <AVG />
         </div>
 
-        <div style={{ background: '#FDFAF6' }}>
+        <div style={{ background: '#F7F5F2' }}>
           <Duurzaamheid />
         </div>
 
@@ -67,7 +63,7 @@ function App() {
           <Advies />
         </div>
 
-        <div style={{ background: 'linear-gradient(135deg, #F5EDE0 0%, #EDD9C0 100%)' }}>
+        <div style={{ background: '#F7F5F2' }}>
           <Conclusie />
         </div>
 
@@ -75,7 +71,7 @@ function App() {
           <Reflectie />
         </div>
 
-        <div style={{ background: '#FDFAF6' }}>
+        <div style={{ background: '#F7F5F2' }}>
           <Bronnen />
         </div>
       </main>

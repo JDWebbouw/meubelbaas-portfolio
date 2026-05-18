@@ -14,19 +14,25 @@ const shopifyFeatures = [
 ]
 
 const statusConfig = {
-  goed: { icon: <CheckCircle size={16} />, color: '#10B981', bg: '#ECFDF5', label: 'Goed' },
-  matig: { icon: <AlertCircle size={16} />, color: '#F59E0B', bg: '#FFFBEB', label: 'Verbeterbaar' },
-  slecht: { icon: <XCircle size={16} />, color: '#EF4444', bg: '#FEF2F2', label: 'Aandachtspunt' },
+  goed: { icon: <CheckCircle size={14} />, color: '#10B981', bg: '#F0FDF4', label: 'Goed' },
+  matig: { icon: <AlertCircle size={14} />, color: '#D97706', bg: '#FFFBEB', label: 'Verbeterbaar' },
+  slecht: { icon: <XCircle size={14} />, color: '#DC2626', bg: '#FEF2F2', label: 'Aandachtspunt' },
 }
 
 const integrations = [
-  { name: 'Google Ads', status: '✅ Actief', desc: 'Primaire advertentiekanaal', icon: '🎯' },
-  { name: 'Google Analytics', status: '✅ Actief', desc: 'Websitetracking en rapportage', icon: '📊' },
-  { name: 'Facebook Pixel', status: '⚠️ Beperkt', desc: 'Aanwezig, weinig benut', icon: '📘' },
-  { name: 'Klaviyo / e-mail', status: '❌ Niet actief', desc: 'E-mailautomatisering ontbreekt', icon: '📧' },
-  { name: 'Review platform', status: '❌ Niet actief', desc: 'Geen reviewplatform gekoppeld', icon: '⭐' },
-  { name: 'Transportpartner', status: '✅ Actief', desc: 'Bezorging via logistieke partner', icon: '🚚' },
+  { name: 'Google Ads', status: 'Actief', desc: 'Primaire advertentiekanaal' },
+  { name: 'Google Analytics', status: 'Actief', desc: 'Websitetracking en rapportage' },
+  { name: 'Facebook Pixel', status: 'Beperkt', desc: 'Aanwezig, weinig benut' },
+  { name: 'Klaviyo / e-mail', status: 'Niet actief', desc: 'E-mailautomatisering ontbreekt' },
+  { name: 'Review platform', status: 'Niet actief', desc: 'Geen reviewplatform gekoppeld' },
+  { name: 'Transportpartner', status: 'Actief', desc: 'Bezorging via logistieke partner' },
 ]
+
+const statusDot = {
+  'Actief': '#10B981',
+  'Beperkt': '#D97706',
+  'Niet actief': '#DC2626',
+}
 
 const aanbevelingen = [
   'Implementeer Klaviyo of Shopify Email voor e-mailautomatisering',
@@ -45,35 +51,35 @@ export default function Systemen() {
         subtitle="Beoordeling van de digitale infrastructuur van MeubelBaas en aanbevelingen voor optimalisatie."
       />
 
-      {/* Shopify beoordeling */}
       <div className="grid lg:grid-cols-2 gap-6 mb-8">
         <div>
-          <h3 className="font-bold text-stone-800 text-lg mb-4">Shopify platformbeoordeling</h3>
-          <div className="space-y-3">
+          <h3 className="font-semibold text-lg mb-4" style={{ color: '#1A1A1A' }}>Shopify platformbeoordeling</h3>
+          <div className="space-y-2.5">
             {shopifyFeatures.map((f, i) => {
               const cfg = statusConfig[f.status]
               return (
                 <div
                   key={i}
-                  className="bg-white rounded-xl p-4 border border-stone-100 flex items-start gap-3 hover:shadow-sm transition-shadow"
+                  className="bg-white rounded-lg p-4 flex items-start gap-3"
+                  style={{ border: '1px solid #E8E4DE', boxShadow: '0 1px 3px rgba(0,0,0,0.06)' }}
                 >
                   <div
-                    className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+                    className="w-7 h-7 rounded-md flex items-center justify-center flex-shrink-0"
                     style={{ background: cfg.bg, color: cfg.color }}
                   >
                     {cfg.icon}
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between gap-2">
-                      <span className="font-semibold text-stone-800 text-sm">{f.naam}</span>
+                      <span className="font-medium text-sm" style={{ color: '#1A1A1A' }}>{f.naam}</span>
                       <span
-                        className="text-xs px-2 py-0.5 rounded-full font-medium flex-shrink-0"
+                        className="text-xs px-2 py-0.5 rounded font-medium flex-shrink-0"
                         style={{ background: cfg.bg, color: cfg.color }}
                       >
                         {cfg.label}
                       </span>
                     </div>
-                    <p className="text-stone-500 text-xs mt-1 leading-relaxed">{f.desc}</p>
+                    <p className="text-xs mt-1 leading-relaxed" style={{ color: '#9CA3AF' }}>{f.desc}</p>
                   </div>
                 </div>
               )
@@ -82,35 +88,36 @@ export default function Systemen() {
         </div>
 
         <div>
-          <h3 className="font-bold text-stone-800 text-lg mb-4">Systeemintegraties</h3>
-          <div className="space-y-3 mb-6">
+          <h3 className="font-semibold text-lg mb-4" style={{ color: '#1A1A1A' }}>Systeemintegraties</h3>
+          <div className="space-y-2.5 mb-5">
             {integrations.map((int, i) => (
               <div
                 key={i}
-                className="bg-white rounded-xl p-4 border border-stone-100 flex items-center gap-4 hover:shadow-sm transition-shadow"
+                className="bg-white rounded-lg p-4 flex items-center gap-4"
+                style={{ border: '1px solid #E8E4DE', boxShadow: '0 1px 3px rgba(0,0,0,0.06)' }}
               >
-                <span className="text-2xl">{int.icon}</span>
+                <div
+                  className="w-2 h-2 rounded-full flex-shrink-0"
+                  style={{ background: statusDot[int.status] || '#9CA3AF' }}
+                />
                 <div className="flex-1">
                   <div className="flex items-center justify-between">
-                    <span className="font-semibold text-stone-800 text-sm">{int.name}</span>
-                    <span className="text-xs text-stone-500">{int.status}</span>
+                    <span className="font-medium text-sm" style={{ color: '#1A1A1A' }}>{int.name}</span>
+                    <span className="text-xs" style={{ color: '#9CA3AF' }}>{int.status}</span>
                   </div>
-                  <p className="text-stone-400 text-xs mt-0.5">{int.desc}</p>
+                  <p className="text-xs mt-0.5" style={{ color: '#9CA3AF' }}>{int.desc}</p>
                 </div>
               </div>
             ))}
           </div>
 
-          {/* Aanbevelingen */}
-          <div
-            className="rounded-2xl p-5"
-            style={{ background: 'linear-gradient(135deg, #F5EDE0, #EDD9C0)' }}
-          >
-            <h4 className="font-bold text-stone-800 mb-3">Aanbevelingen digitale systemen</h4>
+          {/* Aanbevelingen — left-border style */}
+          <div className="rounded-lg p-5" style={{ background: '#F7F5F2', borderLeft: '3px solid #1A1A1A' }}>
+            <h4 className="font-semibold mb-3" style={{ color: '#1A1A1A' }}>Aanbevelingen digitale systemen</h4>
             <ul className="space-y-2">
               {aanbevelingen.map((a, i) => (
-                <li key={i} className="flex items-start gap-2 text-sm text-stone-700">
-                  <CheckCircle size={14} className="mt-0.5 flex-shrink-0" style={{ color: '#8B5E3C' }} />
+                <li key={i} className="flex items-start gap-2 text-sm" style={{ color: '#6B6B6B' }}>
+                  <CheckCircle size={13} className="mt-0.5 flex-shrink-0" style={{ color: '#10B981' }} />
                   {a}
                 </li>
               ))}
@@ -119,20 +126,18 @@ export default function Systemen() {
         </div>
       </div>
 
-      {/* Shopify voordelen samenvatting */}
-      <div className="bg-white rounded-2xl p-6 shadow-sm border border-stone-100">
-        <h3 className="font-bold text-stone-800 mb-4">Waarom Shopify de juiste keuze is</h3>
+      <div className="bg-white rounded-lg p-6" style={{ border: '1px solid #E8E4DE', boxShadow: '0 1px 3px rgba(0,0,0,0.06)' }}>
+        <h3 className="font-semibold mb-4" style={{ color: '#1A1A1A' }}>Waarom Shopify de juiste keuze is</h3>
         <div className="grid sm:grid-cols-3 gap-4">
           {[
-            { icon: '🔒', title: 'Veiligheid', desc: 'PCI-compliant betaalverwerking en SSL standaard inbegrepen.' },
-            { icon: '📈', title: 'Schaalbaarheid', desc: 'Groeit mee met het bedrijf, van startup tot enterprise.' },
-            { icon: '🔗', title: 'Integraties', desc: '8.000+ apps beschikbaar in de Shopify App Store.' },
+            { title: 'Veiligheid', desc: 'PCI-compliant betaalverwerking en SSL standaard inbegrepen.' },
+            { title: 'Schaalbaarheid', desc: 'Groeit mee met het bedrijf, van startup tot enterprise.' },
+            { title: 'Integraties', desc: '8.000+ apps beschikbaar in de Shopify App Store.' },
           ].map((item, i) => (
-            <div key={i} className="flex items-start gap-3 p-4 rounded-xl bg-stone-50">
-              <span className="text-2xl">{item.icon}</span>
+            <div key={i} className="flex items-start gap-3 p-4 rounded-lg" style={{ background: '#F7F5F2' }}>
               <div>
-                <div className="font-semibold text-stone-800 text-sm mb-1">{item.title}</div>
-                <div className="text-stone-500 text-xs leading-relaxed">{item.desc}</div>
+                <div className="font-medium text-sm mb-1" style={{ color: '#1A1A1A' }}>{item.title}</div>
+                <div className="text-xs leading-relaxed" style={{ color: '#6B6B6B' }}>{item.desc}</div>
               </div>
             </div>
           ))}

@@ -95,14 +95,14 @@ export default function Over() {
 
           {/* Doelgroep */}
           <div
-            className="mt-6 rounded-2xl p-6"
-            style={{ background: 'linear-gradient(135deg, #8B5E3C 0%, #6B4226 100%)' }}
+            className="mt-6 rounded-lg p-6"
+            style={{ background: '#F7F5F2', borderLeft: '3px solid #1A1A1A' }}
           >
             <div className="flex items-center gap-3 mb-3">
-              <Users size={20} className="text-amber-200" />
-              <h4 className="font-bold text-white text-lg">Doelgroep</h4>
+              <Users size={18} style={{ color: '#6B6B6B' }} />
+              <h4 className="font-semibold" style={{ color: '#1A1A1A' }}>Doelgroep</h4>
             </div>
-            <p className="text-amber-100 text-sm leading-relaxed">
+            <p className="text-sm leading-relaxed" style={{ color: '#6B6B6B' }}>
               Volwassen consumenten in Nederland en België die op zoek zijn naar kwalitatieve,
               stijlvolle mangohouten meubels voor thuis. De klant waardeert authenticiteit,
               kwaliteit en de mogelijkheid om producten ook fysiek te bekijken.

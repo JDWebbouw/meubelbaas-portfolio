@@ -2,28 +2,28 @@ export default function SectionHeader({ label, title, subtitle, dark = false }) 
   return (
     <div className="mb-14">
       {label && (
-        <div
-          className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.22em] px-4 py-2 rounded-full mb-6"
-          style={
-            dark
-              ? { background: 'rgba(255,255,255,0.08)', color: '#FCD34D' }
-              : { background: 'rgba(139,94,60,0.09)', color: '#8B5E3C' }
-          }
+        <p
+          className="mb-5"
+          style={{
+            fontSize: '11px',
+            letterSpacing: '0.12em',
+            color: dark ? 'rgba(255,255,255,0.35)' : '#6B6B6B',
+            textTransform: 'uppercase',
+            fontFamily: 'Inter, sans-serif',
+            fontWeight: 500,
+          }}
         >
-          <span
-            className="w-1.5 h-1.5 rounded-full"
-            style={{ background: dark ? '#FCD34D' : '#8B5E3C', opacity: 0.7 }}
-          />
           {label}
-        </div>
+        </p>
       )}
 
       <h2
-        className="font-bold leading-[1.08] tracking-tight mb-4"
+        className="font-bold leading-[1.08] mb-4"
         style={{
-          fontSize: 'clamp(2rem, 4vw, 3rem)',
-          color: dark ? '#fff' : '#1c1008',
-          fontFamily: 'Syne, Plus Jakarta Sans, sans-serif',
+          fontSize: 'clamp(1.9rem, 4vw, 2.8rem)',
+          color: dark ? '#FFFFFF' : '#1A1A1A',
+          fontFamily: 'Playfair Display, Georgia, serif',
+          letterSpacing: '-0.01em',
         }}
       >
         {title}
@@ -33,8 +33,9 @@ export default function SectionHeader({ label, title, subtitle, dark = false }) 
         <p
           className="leading-relaxed max-w-2xl"
           style={{
-            fontSize: 'clamp(0.95rem, 1.5vw, 1.1rem)',
-            color: dark ? 'rgba(255,255,255,0.45)' : '#78716c',
+            fontSize: 'clamp(0.925rem, 1.4vw, 1.025rem)',
+            color: dark ? 'rgba(255,255,255,0.4)' : '#6B6B6B',
+            fontFamily: 'Inter, sans-serif',
           }}
         >
           {subtitle}
@@ -43,12 +44,12 @@ export default function SectionHeader({ label, title, subtitle, dark = false }) 
 
       <div className="mt-6 flex items-center gap-2">
         <div
-          className="h-[2px] w-12 rounded-full"
-          style={{ background: 'linear-gradient(90deg, #8B5E3C, #D4A97A)' }}
+          className="h-[1.5px] w-10"
+          style={{ background: dark ? 'rgba(255,255,255,0.25)' : '#1A1A1A' }}
         />
         <div
-          className="h-[2px] w-4 rounded-full"
-          style={{ background: '#D4A97A', opacity: 0.3 }}
+          className="h-[1.5px] w-4"
+          style={{ background: dark ? 'rgba(255,255,255,0.1)' : '#1A1A1A', opacity: 0.25 }}
         />
       </div>
     </div>

@@ -8,9 +8,7 @@ const adviezen = [
     titel: 'Verminder transportschade',
     categorie: 'Operationeel',
     prioriteit: 'Hoog',
-    impact: '⭐⭐⭐',
     tijdspad: 'Korte termijn',
-    icon: '📦',
     color: '#EF4444',
     probleem: 'Transportschade is de meest voorkomende klacht en zorgt voor een retourpercentage van 6%.',
     oplossing: [
@@ -26,10 +24,8 @@ const adviezen = [
     titel: 'Verbeter e-mailmarketing',
     categorie: 'Marketing',
     prioriteit: 'Hoog',
-    impact: '⭐⭐⭐',
     tijdspad: 'Korte termijn',
-    icon: '📧',
-    color: '#8B5E3C',
+    color: '#6366F1',
     probleem: 'E-mailmarketing en retargeting worden niet of nauwelijks ingezet, wat kansen voor herhaalaankopen mist.',
     oplossing: [
       'Implementeer Klaviyo of Shopify Email voor automatische flows',
@@ -44,9 +40,7 @@ const adviezen = [
     titel: 'A/B-tests op productpagina\'s',
     categorie: 'Conversie',
     prioriteit: 'Middel',
-    impact: '⭐⭐',
     tijdspad: 'Middellange termijn',
-    icon: '🧪',
     color: '#3B82F6',
     probleem: 'Productpagina\'s worden niet systematisch geoptimaliseerd op basis van data.',
     oplossing: [
@@ -62,9 +56,7 @@ const adviezen = [
     titel: 'Communiceer duurzaamheid duidelijker',
     categorie: 'Merkbouw',
     prioriteit: 'Middel',
-    impact: '⭐⭐',
     tijdspad: 'Korte termijn',
-    icon: '🌱',
     color: '#10B981',
     probleem: 'De duurzaamheidsaanpak van MeubelBaas is niet prominent zichtbaar voor bezoekers.',
     oplossing: [
@@ -80,9 +72,7 @@ const adviezen = [
     titel: 'Implementeer prijspsychologie',
     categorie: 'Prijsstrategie',
     prioriteit: 'Laag',
-    impact: '⭐⭐',
     tijdspad: 'Korte termijn',
-    icon: '💲',
     color: '#F59E0B',
     probleem: 'Prijzen worden niet strategisch gepresenteerd om aankoopbeslissingen te beïnvloeden.',
     oplossing: [
@@ -98,9 +88,7 @@ const adviezen = [
     titel: 'Monitor KPI\'s structureel',
     categorie: 'Analyse',
     prioriteit: 'Hoog',
-    impact: '⭐⭐⭐',
     tijdspad: 'Korte termijn',
-    icon: '📊',
     color: '#8B5CF6',
     probleem: 'KPI\'s worden niet wekelijks gemonitord, waardoor kansen en problemen laat worden gesignaleerd.',
     oplossing: [
@@ -113,10 +101,10 @@ const adviezen = [
   },
 ]
 
-const prioriteitColor = {
-  Hoog: 'bg-red-100 text-red-600',
-  Middel: 'bg-amber-100 text-amber-700',
-  Laag: 'bg-green-100 text-green-700',
+const prioriteitStyle = {
+  Hoog: { bg: '#FEF2F2', color: '#DC2626' },
+  Middel: { bg: '#FFFBEB', color: '#D97706' },
+  Laag: { bg: '#F0FDF4', color: '#16A34A' },
 }
 
 export default function Advies() {
@@ -128,82 +116,74 @@ export default function Advies() {
         subtitle="Op basis van de analyses zijn de volgende zes verbeteradviezen opgesteld voor MeubelBaas, gerangschikt op prioriteit."
       />
 
-      {/* Prioriteitsoverzicht */}
       <div className="grid grid-cols-3 gap-4 mb-8">
         {[
-          { label: 'Hoge prioriteit', count: adviezen.filter(a => a.prioriteit === 'Hoog').length, color: '#EF4444', bg: '#FEF2F2' },
-          { label: 'Middel prioriteit', count: adviezen.filter(a => a.prioriteit === 'Middel').length, color: '#F59E0B', bg: '#FFFBEB' },
-          { label: 'Lage prioriteit', count: adviezen.filter(a => a.prioriteit === 'Laag').length, color: '#10B981', bg: '#ECFDF5' },
+          { label: 'Hoge prioriteit', count: adviezen.filter(a => a.prioriteit === 'Hoog').length, ...prioriteitStyle.Hoog },
+          { label: 'Middel prioriteit', count: adviezen.filter(a => a.prioriteit === 'Middel').length, ...prioriteitStyle.Middel },
+          { label: 'Lage prioriteit', count: adviezen.filter(a => a.prioriteit === 'Laag').length, ...prioriteitStyle.Laag },
         ].map((p, i) => (
-          <div key={i} className="rounded-2xl p-5 text-center" style={{ background: p.bg }}>
-            <div className="text-3xl font-extrabold mb-1" style={{ color: p.color }}>{p.count}</div>
-            <div className="text-xs font-medium text-stone-600">{p.label}</div>
+          <div key={i} className="rounded-lg p-5 text-center" style={{ background: p.bg, border: '1px solid #E8E4DE' }}>
+            <div className="text-3xl font-bold mb-1" style={{ color: p.color, fontFamily: 'Playfair Display, serif' }}>{p.count}</div>
+            <div className="text-xs font-medium" style={{ color: '#6B6B6B' }}>{p.label}</div>
           </div>
         ))}
       </div>
 
-      {/* Advies cards */}
       <div className="space-y-4">
         {adviezen.map((advies, i) => (
           <div
             key={i}
-            className="bg-white rounded-2xl shadow-sm border border-stone-100 overflow-hidden hover:shadow-md transition-all duration-300"
+            className="bg-white rounded-lg overflow-hidden"
+            style={{ border: '1px solid #E8E4DE', boxShadow: '0 1px 3px rgba(0,0,0,0.06)', transition: 'box-shadow 0.3s' }}
+            onMouseEnter={e => { e.currentTarget.style.boxShadow = '0 4px 16px rgba(0,0,0,0.08)' }}
+            onMouseLeave={e => { e.currentTarget.style.boxShadow = '0 1px 3px rgba(0,0,0,0.06)' }}
           >
             <div className="flex">
-              {/* Left accent */}
-              <div className="w-1.5 flex-shrink-0" style={{ background: advies.color }} />
+              <div className="w-1 flex-shrink-0" style={{ background: advies.color }} />
               <div className="flex-1 p-6">
                 <div className="flex flex-wrap items-start justify-between gap-3 mb-4">
-                  <div className="flex items-center gap-3">
-                    <div
-                      className="w-10 h-10 rounded-xl flex items-center justify-center text-xl"
-                      style={{ background: advies.color + '15' }}
-                    >
-                      {advies.icon}
+                  <div>
+                    <div className="font-semibold text-base mb-1" style={{ color: '#1A1A1A' }}>
+                      {advies.nr}. {advies.titel}
                     </div>
-                    <div>
-                      <div className="flex items-center gap-2">
-                        <span className="font-bold text-lg text-stone-900">
-                          {advies.nr}. {advies.titel}
-                        </span>
-                      </div>
-                      <div className="flex gap-2 mt-1">
-                        <span className="text-xs px-2 py-0.5 rounded-full bg-stone-100 text-stone-600 font-medium">
-                          {advies.categorie}
-                        </span>
-                        <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${prioriteitColor[advies.prioriteit]}`}>
-                          {advies.prioriteit}
-                        </span>
-                        <span className="text-xs text-stone-400">{advies.tijdspad}</span>
-                      </div>
+                    <div className="flex gap-2 flex-wrap">
+                      <span className="text-xs px-2 py-0.5 rounded font-medium" style={{ background: '#F7F5F2', color: '#6B6B6B' }}>
+                        {advies.categorie}
+                      </span>
+                      <span
+                        className="text-xs px-2 py-0.5 rounded font-medium"
+                        style={{ background: prioriteitStyle[advies.prioriteit].bg, color: prioriteitStyle[advies.prioriteit].color }}
+                      >
+                        {advies.prioriteit}
+                      </span>
+                      <span className="text-xs" style={{ color: '#9CA3AF' }}>{advies.tijdspad}</span>
                     </div>
                   </div>
-                  <div className="text-lg" title="Impact">{advies.impact}</div>
                 </div>
 
                 <div className="grid sm:grid-cols-3 gap-4">
                   <div>
-                    <h4 className="text-xs font-bold uppercase tracking-wide text-stone-400 mb-2">Probleem</h4>
-                    <p className="text-sm text-stone-600 leading-relaxed">{advies.probleem}</p>
+                    <h4 className="text-[10px] font-semibold uppercase tracking-[0.12em] mb-2" style={{ color: '#9CA3AF' }}>Probleem</h4>
+                    <p className="text-sm leading-relaxed" style={{ color: '#6B6B6B' }}>{advies.probleem}</p>
                   </div>
                   <div>
-                    <h4 className="text-xs font-bold uppercase tracking-wide text-stone-400 mb-2">Actiestappen</h4>
+                    <h4 className="text-[10px] font-semibold uppercase tracking-[0.12em] mb-2" style={{ color: '#9CA3AF' }}>Actiestappen</h4>
                     <ul className="space-y-1">
                       {advies.oplossing.map((stap, j) => (
-                        <li key={j} className="flex items-start gap-2 text-xs text-stone-600">
-                          <ArrowRight size={10} className="mt-1 flex-shrink-0" style={{ color: advies.color }} />
+                        <li key={j} className="flex items-start gap-2 text-xs" style={{ color: '#6B6B6B' }}>
+                          <ArrowRight size={10} className="mt-0.5 flex-shrink-0" style={{ color: advies.color }} />
                           {stap}
                         </li>
                       ))}
                     </ul>
                   </div>
                   <div>
-                    <h4 className="text-xs font-bold uppercase tracking-wide text-stone-400 mb-2">Verwacht resultaat</h4>
+                    <h4 className="text-[10px] font-semibold uppercase tracking-[0.12em] mb-2" style={{ color: '#9CA3AF' }}>Verwacht resultaat</h4>
                     <div
-                      className="text-sm font-medium p-3 rounded-xl"
-                      style={{ background: advies.color + '12', color: advies.color }}
+                      className="text-sm font-medium p-3 rounded"
+                      style={{ background: '#F7F5F2', color: '#1A1A1A', borderLeft: '2px solid #1A1A1A' }}
                     >
-                      <Target size={14} className="inline mr-1" />
+                      <Target size={13} className="inline mr-1" style={{ color: '#6B6B6B' }} />
                       {advies.verwacht}
                     </div>
                   </div>
