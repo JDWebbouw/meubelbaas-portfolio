@@ -1,26 +1,43 @@
 import { useEffect, useRef } from 'react'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger)
 
 export default function SectionWrapper({ id, children, className = '' }) {
   const ref = useRef(null)
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible')
+    const el = ref.current
+    if (!el) return
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        el,
+        { opacity: 0, y: 52 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.95,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 86%',
+            once: true,
+          },
         }
-      },
-      { threshold: 0.08 }
-    )
-    if (ref.current) observer.observe(ref.current)
-    return () => observer.disconnect()
+      )
+    }, el)
+
+    return () => ctx.revert()
   }, [])
 
   return (
     <section
       id={id}
       ref={ref}
-      className={`section-fade py-20 px-4 sm:px-6 max-w-7xl mx-auto w-full ${className}`}
+      style={{ opacity: 0 }}
+      className={`py-24 sm:py-32 px-4 sm:px-6 max-w-7xl mx-auto w-full ${className}`}
     >
       {children}
     </section>

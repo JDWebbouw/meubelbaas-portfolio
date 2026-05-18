@@ -1,23 +1,56 @@
 export default function SectionHeader({ label, title, subtitle, dark = false }) {
   return (
-    <div className="mb-12">
+    <div className="mb-14">
       {label && (
-        <span
-          className="inline-block text-xs font-semibold uppercase tracking-widest px-3 py-1 rounded-full mb-4"
-          style={dark
-            ? { background: 'rgba(139,94,60,0.4)', color: '#D4A97A' }
-            : { background: '#F5EDE0', color: '#8B5E3C' }}
+        <div
+          className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.22em] px-4 py-2 rounded-full mb-6"
+          style={
+            dark
+              ? { background: 'rgba(255,255,255,0.08)', color: '#FCD34D' }
+              : { background: 'rgba(139,94,60,0.09)', color: '#8B5E3C' }
+          }
         >
+          <span
+            className="w-1.5 h-1.5 rounded-full"
+            style={{ background: dark ? '#FCD34D' : '#8B5E3C', opacity: 0.7 }}
+          />
           {label}
-        </span>
+        </div>
       )}
-      <h2 className={`text-3xl sm:text-4xl font-bold mb-3 leading-tight ${dark ? 'text-white' : 'text-stone-900'}`}>
+
+      <h2
+        className="font-bold leading-[1.08] tracking-tight mb-4"
+        style={{
+          fontSize: 'clamp(2rem, 4vw, 3rem)',
+          color: dark ? '#fff' : '#1c1008',
+          fontFamily: 'Syne, Plus Jakarta Sans, sans-serif',
+        }}
+      >
         {title}
       </h2>
+
       {subtitle && (
-        <p className={`text-lg max-w-2xl ${dark ? 'text-stone-400' : 'text-stone-500'}`}>{subtitle}</p>
+        <p
+          className="leading-relaxed max-w-2xl"
+          style={{
+            fontSize: 'clamp(0.95rem, 1.5vw, 1.1rem)',
+            color: dark ? 'rgba(255,255,255,0.45)' : '#78716c',
+          }}
+        >
+          {subtitle}
+        </p>
       )}
-      <div className="mt-4 w-16 h-1 rounded-full" style={{ background: '#8B5E3C' }} />
+
+      <div className="mt-6 flex items-center gap-2">
+        <div
+          className="h-[2px] w-12 rounded-full"
+          style={{ background: 'linear-gradient(90deg, #8B5E3C, #D4A97A)' }}
+        />
+        <div
+          className="h-[2px] w-4 rounded-full"
+          style={{ background: '#D4A97A', opacity: 0.3 }}
+        />
+      </div>
     </div>
   )
 }
